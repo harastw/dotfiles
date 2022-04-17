@@ -1,9 +1,6 @@
 setxkbmap -layout us,ru -option grp:toggle cale
-
-dwmblocks &
-
-feh --bg-scale /home/void/Downloads/dark.jpg
-
 flameshot &
+feh --bg-scale /home/ai/pic/warh.jpg
+picom &
 
-exec dwm
+exec i3
