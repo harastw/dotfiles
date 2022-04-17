@@ -2,7 +2,7 @@ set $mod Mod4
 font pango:FreeSerifBold 10
 
 
-# Выключить заголовки окон
+# windows
 default_border pixel 0
 
 exec --no-startup-id dex --autostart --environment i3
@@ -10,7 +10,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 set $refresh_i3status killall -SIGUSR1 i3status
 
-# Звук
+# volume
 bindsym $mod+y exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym $mod+u exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym $mod+i exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
@@ -18,15 +18,18 @@ bindsym $mod+i exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle &&
 floating_modifier $mod
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
-# Скриншот
-bindsym $mod+Shift+s exec flameshot gui
-# Запуск Rofi menu
-bindsym $mod+d exec --no-startup-id rofi -show drun -run-shell-command '{terminal} -e zsh -ic "{cmd} &
-& read"'
-bindsym $mod+f exec firefox
-assign [class="firefox"] $ws2
+
+bindsym $mod+Shift+s exec flameshot gui # screen
+
+bindsym $mod+d exec --no-startup-id rofi -show drun -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"' # rofi
+bindsym $mod+g exec chromium
+
+# telegram
 bindsym $mod+t exec telegram-desktop
-assign [class="telegram-desktop"] $ws3
+bindsym $mod+Shift+t exec killall -q telegram-desktop
+
+bindsym $mod+p exec sh ~/scripts/poly.sh
+bindsym $mod+Shift+p exec killall -q polybar
 
 # change focus
 bindsym $mod+h focus left
@@ -86,8 +89,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want
-to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'exit?' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -115,9 +117,10 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
         position top
+        mode invisible
 }
 
-# Отступы ( Gaps )
-gaps inner 20
-gaps outer 10
-smart_gaps on
+# Gaps
+# gaps inner 20
+# gaps outer 10
+# smart_gaps on
