@@ -25,3 +25,4 @@ map <F2> :NERDTreeToggle<CR>
 
 colorscheme gruvbox
 set background=dark
+let g:gruvbox_contrast_dark = 'hard'
