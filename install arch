@@ -1,0 +1,30 @@
+ping google.com
+fdisk /dev/sda
+g
+n
+
+
++1G
+t
+4
+n
+
+
++10G
+t
+19
+n
+
+
+
+w
+pacstrap /mnt base linux linux-firmware
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+
+УСТАНОВКА ПАКЕТОВ
+sudo pacman -Sy vim NetworkManager grub base-devel chromium alacritty xorg xorg-xinit rofi i3-gaps i3status telegram-desktop flameshtop feh unrar unzip zsh
+gpick pulseaudio alsa alsa-utils neofetch cmatrix
+
+настройка сети
+grub
