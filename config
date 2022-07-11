@@ -18,6 +18,7 @@ bindsym $mod+Shift+u exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -
 bindsym $mod+i exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 
 floating_modifier $mod
+bindsym $mod+c exec code
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
