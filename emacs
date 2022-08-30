@@ -19,3 +19,6 @@
 (package-initialize)
 
 (setq inferior-lisp-program "/usr/bin/sbcl")
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
