@@ -57,10 +57,6 @@
 (define-key global-map (kbd "C-2") nil)
 (define-key global-map (kbd "C-3") nil)
 
-(add-hook 'prog-mode-hook
-  (lambda ()
-    (local-set-key "\C-d" #'forward-char))) ;; c++ mode, f*ck u!
-
 ;; hotheys
 ;; SSS keys
 (global-set-key (kbd "C-f") 'execute-extended-command) ;; execute command
@@ -72,7 +68,12 @@
 (global-set-key (kbd "C-w") 'previous-line) ;; up
 (global-set-key (kbd "C-s") 'next-line) ;; down
 (global-set-key (kbd "C-a") 'backward-char) ;; left
-(global-set-key (kbd "C-d") 'forward-char) ;; right
+
+(global-set-key "\C-d" #'forward-symbol)
+(with-eval-after-load 'cc-mode
+  (define-key c++-mode-map "\C-d" nil)) ;; right
+;; (global-set-key (kbd "C-d") 'forward-char) ;; right
+
 (global-set-key (kbd "C-q") 'beginning-of-line) ;; begin of line
 (global-set-key (kbd "C-e") 'end-of-line) ;; end of line
 
