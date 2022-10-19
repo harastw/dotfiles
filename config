@@ -3,7 +3,7 @@ font pango:FreeSerifBold 10
 
 
 # windows
-default_border pixel 0
+for_window [class="^.*"] border pixel 0
 
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -18,14 +18,14 @@ bindsym $mod+Shift+u exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -
 bindsym $mod+i exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 
 floating_modifier $mod
-bindsym $mod+c exec code
+bindsym $mod+e exec e
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 bindsym $mod+Shift+s exec flameshot gui # screen
 
 bindsym $mod+d exec --no-startup-id rofi -show drun -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"' # rofi
-bindsym $mod+g exec chromium
+bindsym $mod+f exec firefox
 
 # telegram
 bindsym $mod+t exec telegram-desktop
@@ -124,6 +124,6 @@ bar {
 }
 bindsym $mod+Shift+space floating toggle
 # Gaps
-# gaps inner 20
+gaps inner 20
 # gaps outer 10
-# smart_gaps on
+smart_gaps on
