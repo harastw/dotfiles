@@ -1,6 +1,4 @@
--- If LuaRocks is installed, make sure that packages installed through it are
 pcall(require, "luarocks.loader")
-
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -22,6 +20,8 @@ local cmus_widget = require('awesome-wm-widgets.cmus-widget.cmus')
 require("awful.hotkeys_popup.keys")
 
 -- {{{ Error handling
+-- Check if awesome encountered an error during startup and fell back to
+-- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",
@@ -46,7 +46,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/ai/.config/awesome/themes/trans/theme.lua")
+beautiful.init("/home/ai/.config/awesome/themes/sark/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -88,8 +88,8 @@ internet = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal },
-				    { "internet", internet }
+			     { "open terminal", terminal },
+			     { "internet", internet }
                                   }
                         })
 
@@ -105,7 +105,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(' %a %b %d, %H:%M:%S', 1)
+mytextclock = wibox.widget.textclock()
 
 -- sark visious widgets
 -- memory
@@ -180,11 +180,11 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "terminal", "firefox", "chat", "A", "R", "C", "H", "VLC", "9" }, s, awful.layout.layouts[2])
+    awful.tag({ ">_", "", "", "", "", "", "", "", "I use arch btw" },
+       s, awful.layout.layouts[2])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(gears.table.join(
@@ -207,7 +207,7 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "bottom", screen = s })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -219,13 +219,13 @@ awful.screen.connect_for_each_screen(function(s)
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
-        { -- Right widgets
+	{ -- Right widgets
             layout = wibox.layout.fixed.horizontal,
 	    cmus_widget(),
 	    volume_widget(),
             mykeyboardlayout,
-	        memwidget,
-	        cpuwidget,
+	    memwidget,
+	    cpuwidget,
             wibox.widget.systray(),
             -- qwerty
             mytextclock,
@@ -245,17 +245,18 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    -- sark
+   -- sark
     awful.key({modkey, "Shift"}, "f", function () awful.spawn("flameshot gui") end,
               {description="lol", group="awesome"}),
-    awful.key({modkey, "Shift"}, "y", function () awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10% ") end,
+    awful.key({modkey, "Shift"}, "y", function () awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5% ") end,
               {description="lol", group="awesome"}),
-    awful.key({modkey, "Shift"}, "u", function () awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10% ") end,
+    awful.key({modkey, "Shift"}, "u", function () awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5% ") end,
               {description="lol", group="awesome"}),
     awful.key({modkey, "Shift"}, "t", function () awful.spawn("telegram-desktop") end,
                   {description="lol", group="awesome"}),
     awful.key({modkey, "Shift"}, "b", function () awful.spawn(browser) end,
                   {description="lol", group="awesome"}),
+    -- end sark hotkeys
 
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
@@ -302,7 +303,6 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
-
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
