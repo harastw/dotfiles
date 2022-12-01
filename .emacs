@@ -21,7 +21,9 @@
        '(:eval (list (nyan-create)))
        ))
 
-(rainbow-mode)
+(define-globalized-minor-mode my-global-rainbow-mode rainbow-mode
+  (lambda () (rainbow-mode 1)))
+(my-global-rainbow-mode 1)
 
 (menu-bar-mode -1) ;; off bars
 (tool-bar-mode -1)
@@ -43,7 +45,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(set-face-attribute 'default nil :height 140)
+(set-frame-font "hermit 12" nil t)
 
 (require 'evil)
 (evil-mode 1)
