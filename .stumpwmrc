@@ -1,0 +1,38 @@
+(set-prefix-key (kbd "s-d"))
+(run-shell-command "feh --bg-scale ~/pic/wood.jpg")
+(run-shell-command "flameshot")
+
+(setf *message-window-gravity* :center
+      *input-window-gravity* :center
+      *window-border-style* :thin
+      *message-window-padding* 10
+      *maxsize-border-width* 5
+      *normal-border-width* 5
+      *transient-border-width* 2
+      stumpwm::*float-window-border* 2
+      stumpwm::*float-window-title-height* 5
+      *mouse-focus-policy* :click)
+
+(set-fg-color "#ebdbb2")
+(set-bg-color "#1d2021")
+(set-border-color "#cc241d")
+(set-focus-color "#458588")
+(set-unfocus-color "#fabd2f")
+(set-win-bg-color "#928374")
+(set-float-focus-color "#d3869b")
+(set-float-unfocus-color "#b9bb26")
+
+(defmacro bind-shell-to-key (key command &optional (map *root-map*))
+  `(define-key ,map (kbd ,key) (concatenate 'string
+                                            "run-shell-command "
+                                            ,command)))
+
+(bind-shell-to-key "c" "urxvt")
+
+(bind-shell-to-key "y" "amixer set Master 10%+")
+(bind-shell-to-key "u" "amixer set Master 10%-")
+(bind-shell-to-key "SunPrint_Screen" "flameshot gui")
+
+;;;; Style of window borders
+(setf *mouse-focus-policy* :click
+      *window-border-style* :thin)
