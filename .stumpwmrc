@@ -32,7 +32,21 @@
 (bind-shell-to-key "y" "amixer set Master 10%+")
 (bind-shell-to-key "u" "amixer set Master 10%-")
 (bind-shell-to-key "SunPrint_Screen" "flameshot gui")
+(bind-shell-to-key "t" "telegram-desktop")
+(bind-shell-to-key "T" "killall -q telegram-desktop")
+(bind-shell-to-key "j" "amixer set Master toggle")
 
 ;;;; Style of window borders
 (setf *mouse-focus-policy* :click
       *window-border-style* :thin)
+
+;; turn on/off the mode line for the current head only.
+(stumpwm:toggle-mode-line (stumpwm:current-screen)
+                          (stumpwm:current-head))
+
+
+(setf stumpwm:*screen-mode-line-format*
+      (list "%w "
+            '(:eval (stumpwm:run-shell-command "bash ~/scr/mode.sh" t))))
+
+
