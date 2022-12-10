@@ -5,22 +5,19 @@
 (setf *message-window-gravity* :center
       *input-window-gravity* :center
       *window-border-style* :thin
-      *message-window-padding* 10
-      *maxsize-border-width* 5
-      *normal-border-width* 5
-      *transient-border-width* 2
-      stumpwm::*float-window-border* 2
-      stumpwm::*float-window-title-height* 5
+      *normal-border-width* 2
       *mouse-focus-policy* :click)
+
+(set-msg-border-width 2)
 
 (set-fg-color "#ebdbb2")
 (set-bg-color "#1d2021")
-(set-border-color "#cc241d")
+(set-border-color "#b9bb26")
 (set-focus-color "#458588")
 (set-unfocus-color "#fabd2f")
 (set-win-bg-color "#928374")
 (set-float-focus-color "#d3869b")
-(set-float-unfocus-color "#b9bb26")
+(set-float-unfocus-color "#cc241d")
 
 (defmacro bind-shell-to-key (key command &optional (map *root-map*))
   `(define-key ,map (kbd ,key) (concatenate 'string
@@ -30,23 +27,30 @@
 (bind-shell-to-key "c" "urxvt")
 
 (bind-shell-to-key "y" "amixer set Master 10%+")
+(bind-shell-to-key "Y" "amixer set Master 1%+")
 (bind-shell-to-key "u" "amixer set Master 10%-")
+(bind-shell-to-key "U" "amixer set Master 1%-")
 (bind-shell-to-key "SunPrint_Screen" "flameshot gui")
 (bind-shell-to-key "t" "telegram-desktop")
 (bind-shell-to-key "T" "killall -q telegram-desktop")
 (bind-shell-to-key "j" "amixer set Master toggle")
 
-;;;; Style of window borders
 (setf *mouse-focus-policy* :click
-      *window-border-style* :thin)
+      *window-border-style* :thin
+      *mode-line-background-color* "#1d2021"
+      *mode-line-foreground-color* "#ebdbb2"
+      *mode-line-border-color* "#458588"
+      *mode-line-timeout* 1
+      *mode-line-border-width* 2
+)
+
+(setf stumpwm:*screen-mode-line-format*
+      (list "%w "
+            '(:eval (stumpwm:run-shell-command "bash ~/scr/mode.sh" t))))
 
 ;; turn on/off the mode line for the current head only.
 (stumpwm:toggle-mode-line (stumpwm:current-screen)
                           (stumpwm:current-head))
 
-
-(setf stumpwm:*screen-mode-line-format*
-      (list "%w "
-            '(:eval (stumpwm:run-shell-command "bash ~/scr/mode.sh" t))))
 
 
