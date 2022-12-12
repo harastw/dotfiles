@@ -1,6 +1,8 @@
 (set-prefix-key (kbd "s-d"))
 (run-shell-command "feh --bg-scale ~/pic/wood.jpg")
 (run-shell-command "flameshot")
+(run-shell-command "picom")
+(run-shell-command "setxkbmap -layout us,ru -option grp:toggle cale")
 
 (setf *message-window-gravity* :center
       *input-window-gravity* :center
@@ -14,8 +16,8 @@
 (set-bg-color "#1d2021")
 (set-border-color "#b9bb26")
 (set-focus-color "#458588")
-(set-unfocus-color "#fabd2f")
-(set-win-bg-color "#928374")
+(set-unfocus-color "#b9bb26")
+(set-win-bg-color "#1d2021")
 (set-float-focus-color "#d3869b")
 (set-float-unfocus-color "#cc241d")
 
@@ -24,7 +26,7 @@
                                             "run-shell-command "
                                             ,command)))
 
-(bind-shell-to-key "c" "urxvt")
+(bind-shell-to-key "c" "alacritty")
 
 (bind-shell-to-key "y" "amixer set Master 10%+")
 (bind-shell-to-key "Y" "amixer set Master 1%+")
