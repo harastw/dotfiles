@@ -27,8 +27,10 @@ cpu_last_sum=$cpu_sum
 
 CPU_TEMP="$(sensors | grep temp1 | awk 'NR==1{gsub("+", " "); gsub("\\..", " "); print $2}')"
 
+disk="$(df -h --output="used,avail" / | perl -ne 'if($_ =~ m/\d/) { s/\s+/ /g;s/^\s//g;s/\s$//g;s/\s/\//; print $_}')"
+
 if [ "$CPU_TEMP" -ge $WARNING_LEVEL ]; then
     PREFIX="$FIRE$PREFIX"
 fi
 
-echo  "[$D $T] [vol: $V] [mem: $USED_RAM/$TOTAL_RAM] [cpu use: $cpu_usage%] [cpu temp: $CPU_TEMP°C]"
+echo  "[$D $T] [vol: $V] [mem: $USED_RAM/$TOTAL_RAM] [cpu use: $cpu_usage%] [cpu temp: $CPU_TEMP°C] [$disk]"
