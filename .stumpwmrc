@@ -14,9 +14,9 @@
 
 (set-fg-color "#ebdbb2")
 (set-bg-color "#1d2021")
-(set-border-color "#b9bb26")
+(set-border-color "#113637")
 (set-focus-color "#458588")
-(set-unfocus-color "#b9bb26")
+(set-unfocus-color "#113637") ;; #b9bb26
 (set-win-bg-color "#1d2021")
 (set-float-focus-color "#d3869b")
 (set-float-unfocus-color "#cc241d")
@@ -26,7 +26,7 @@
                                             "run-shell-command "
                                             ,command)))
 
-(bind-shell-to-key "c" "alacritty")
+(bind-shell-to-key "c" "kitty")
 
 (bind-shell-to-key "y" "amixer set Master 10%+")
 (bind-shell-to-key "Y" "amixer set Master 1%+")
@@ -41,13 +41,13 @@
       *window-border-style* :thin
       *mode-line-background-color* "#1d2021"
       *mode-line-foreground-color* "#ebdbb2"
-      *mode-line-border-color* "#458588"
+      *mode-line-border-color* "#1d2021"
       *mode-line-timeout* 1
-      *mode-line-border-width* 2
+      *mode-line-border-width* 1
 )
 
 (setf stumpwm:*screen-mode-line-format*
-      (list "%w "
+      (list "%g "
             '(:eval (stumpwm:run-shell-command "bash ~/scr/mode.sh" t))))
 
 ;; turn on/off the mode line for the current head only.
