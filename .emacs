@@ -9,11 +9,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(gruvbox-dark-hard))
+ '(custom-enabled-themes '(dracula))
  '(custom-safe-themes
-   '("d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" "7356632cebc6a11a87bc5fcffaa49bae528026a78637acd03cae57c091afd9b9" "ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "803aaddee599b43da31fb0fd8fae0fa58b4ef7617c673f07201e3463a3099957" "776c1ab52648f98893a2aa35af2afc43b8c11dd3194a052e0b2502acca02bfce" "fa1b2c364b1d058d0611caa5f5c9b2e8cdd0eca519ef88af2de2a2728bbf8070" "d824f0976625bb3bb38d3f6dd10b017bdb4612f27102545a188deef0d88b0cd9" default))
- '(package-selected-packages
-   '(rainbow-mode lua-mode evil dashboard ubuntu-theme nyan-mode slime gruvbox-theme)))
+   '("b54bf2fa7c33a63a009f249958312c73ec5b368b1094e18e5953adb95ad2ec3a" default))
+ '(package-selected-packages '(dracula-theme sly rainbow-mode evil nyan-mode)))
 
 (nyan-mode)
 (setq mode-line-format
@@ -45,7 +44,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(set-frame-font "hermit 12" nil t)
+(set-frame-font "Liberation Mono 12" nil t)
 
 (require 'evil)
 (evil-mode 1)
