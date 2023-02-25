@@ -1,6 +1,5 @@
+feh --bg-scale ~/pic/rei.jpg
 setxkbmap -layout us,ru -option grp:toggle cale
+bash ~/code/bash/mode.sh &
 flameshot &
-feh --bg-scale /home/sark/pic/warh.jpg
-picom &
-
 exec dwm
